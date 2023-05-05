@@ -1,0 +1,7 @@
+name = "RitmTest"
+uuid = "c90c9139-1dc0-4717-94df-3cbcbb01cd2b"
+authors = ["Kirill Stepanov <k.v.stepanov@yandex.ru>"]
+version = "0.1.0"
+
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
