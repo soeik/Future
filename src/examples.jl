@@ -8,7 +8,7 @@ function request(url, success, failure)
         response = HTTP.get(url)
         success(String(response.body))
     catch e
-        failure(e)
+        failure(e.status)
     end
 end
 

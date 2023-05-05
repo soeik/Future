@@ -30,7 +30,7 @@ function collect(fs::Vector{Future})
     results = []
     errors = []
     success(res) = push!(results, res)
-    failure(e) = push!(errors, e.status) ## TODO mapError
+    failure(e) = push!(errors, e)
     function executor(resolve, reject)
         for i = eachindex(fs)
             fut = fs[i]
