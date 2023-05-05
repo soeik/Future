@@ -3,12 +3,6 @@ import ..FP, HTTP
 nice_url = "https://jsonplaceholder.typicode.com/todos/1"
 fail_url = "https://jsonplaceholder.typicode.com/todos/notfound"
 
-
-test_urls = [
-    "https://jsonplaceholder.typicode.com/todos/1",
-    "https://jsonplaceholder.typicode.com/todos/2"
-]
-
 function request(url, success, failure)
     try
         response = HTTP.get(url)
@@ -35,7 +29,6 @@ end
 print_error(e) = println("ERROR: ", e)
 
 future = downloadUrls([nice_url, fail_url]) |> collectErrors
-println(typeof(future))
 
 res = FP.await(future)
 println("RESULT: ", res)

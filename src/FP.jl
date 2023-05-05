@@ -25,7 +25,8 @@ fork(fut, success, failure) = begin
     return fut
 end
 
-function collect(fs::Vector{Future}) # TODO ::Future{Tuple{Any,Any}}
+# Test task 3
+function collect(fs::Vector{Future})
     results = []
     errors = []
     success(res) = push!(results, res)
@@ -40,6 +41,7 @@ function collect(fs::Vector{Future}) # TODO ::Future{Tuple{Any,Any}}
     FP.Future(executor)
 end
 
+# Test task 4
 function await(fut::Future)
     function unwrap()
         result = nothing
