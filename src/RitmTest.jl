@@ -41,6 +41,8 @@ print_error(e) = println("ERROR: ", e)
 fut_fail = downloadUrls([nice_url, fail_url])
 fut_collected = collectErrors(fut_fail)
 # FP.fork.(fut_fail, println, print_error)
-FP.fork(fut_collected, println, print_error)
+# FP.fork(fut_collected, println, print_error)
 
+res = FP.await(fut_collected)
+println("RESULT: ", res)
 end #module RitmTest

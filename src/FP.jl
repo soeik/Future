@@ -2,7 +2,7 @@ module FP
 
 import HTTP, JSON, Base
 
-export Future, of, map, chain, fork, collect
+export Future, of, map, chain, fork, collect, await
 
 struct Future
     executor::Function
@@ -38,6 +38,16 @@ function collect(fs::Vector{Future}) # TODO ::Future{Tuple{Any,Any}}
         resolve([results, errors])
     end
     FP.Future(executor)
+end
+
+function await(fut::Future)
+    function unwrap()
+        result = nothing
+        fork(fut, res -> result = res, e -> result = e)
+        return result
+    end
+    task = @async unwrap()
+    return fetch(task)
 end
 
 end
