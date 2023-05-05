@@ -30,13 +30,17 @@ function downloadUrls(urls::Vector{String})::Vector{FP.Future}
 end
 
 # test 2
-# function collectErrors(fs::Vector{Future{String}})::Future{Tuple{Vector{String},Vector{Throwable}}}
-#     #
-# end
+# TODO types
+# function collectErrors(fs: Array{Future{String}}): Future{Array{Tuple{Array{String}, 
+function collectErrors(fs::Vector{FP.Future}) #::FP.Future{Tuple{Vector{String},Vector{Throwable}}}
+    FP.collect(fs)
+end
 
 print_error(e) = println("ERROR: ", e)
 
 fut_fail = downloadUrls([nice_url, fail_url])
-FP.fork.(fut_fail, println, print_error)
+fut_collected = collectErrors(fut_fail)
+# FP.fork.(fut_fail, println, print_error)
+FP.fork(fut_collected, println, print_error)
 
 end #module RitmTest
