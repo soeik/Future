@@ -22,7 +22,7 @@ function downloadUrls(urls::Vector{String})::Vector{FP.Future}
 end
 
 # Test task 2
-function collectErrors(fs::Vector{FP.Future}) ## ::FP.Future{Any}
+function collectErrors(fs::Vector{FP.Future})
     FP.collect(fs)
 end
 
